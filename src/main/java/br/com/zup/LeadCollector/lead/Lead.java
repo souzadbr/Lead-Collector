@@ -1,6 +1,11 @@
 package br.com.zup.LeadCollector.lead;
 
 import br.com.zup.LeadCollector.produto.Produto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,5 +45,17 @@ public class Lead {
 
     public void setProdutosDeInteresse(List<Produto> produtosDeInteresse) {
         this.produtosDeInteresse = produtosDeInteresse;
+    }
+
+    @RestController
+    @RequestMapping("/leads")
+    public static class LeadController {
+        @Autowired
+        private LeadService leadService;
+
+        @PutMapping
+        public Lead cadastrarLead(@RequestBody Lead lead){
+           return leadService.salvarLead(lead);
+        }
     }
 }
