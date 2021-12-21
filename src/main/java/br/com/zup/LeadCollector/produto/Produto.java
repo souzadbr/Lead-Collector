@@ -1,4 +1,4 @@
-package br.com.zup.LeadCollector;
+package br.com.zup.LeadCollector.produto;
 
 import javax.persistence.*;
 
