@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -18,9 +17,12 @@ import java.util.List;
 public class Lead {
 
     @Id //email fica como chave primaria
+    @Email
     private String email;
-    @Column(columnDefinition = "VARCHAR(100) DEFAULT('Nãoinformado')")
+    @Column(columnDefinition = "VARCHAR(100)")
+    @Size(min=3)
     private String nome;
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})//relacionando muitos leads para muitos produtos
     private List<Produto>produtosDeInteresse;
 
     public String getEmail() {
