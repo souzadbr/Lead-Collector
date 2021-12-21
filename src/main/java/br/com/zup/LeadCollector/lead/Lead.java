@@ -2,14 +2,19 @@ package br.com.zup.LeadCollector.lead;
 
 import br.com.zup.LeadCollector.produto.Produto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.List;
 
 @Entity
 @Table(name= "leads")
 public class Lead {
+
+    @Id //email fica como chave primaria
     private String email;
+    @Column(columnDefinition = "VARCHAR(100) DEFAULT('Nãoinformado')")
     private String nome;
     private List<Produto>produtosDeInteresse;
 
