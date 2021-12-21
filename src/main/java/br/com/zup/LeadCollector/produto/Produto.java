@@ -1,6 +1,7 @@
 package br.com.zup.LeadCollector.produto;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity //entidade gera tabela no banco de dados
 @Table (name = "produtos") //dá nome para tabela ou pode ser usado apra mapear uma tabela que já existe.
@@ -9,7 +10,7 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true)//esse nome será unico, somente um produto com mesmo nome
+    @Column(unique = true, nullable = false)//esse nome será unico, somente um produto com mesmo nome
     private String nome;
 
     //Por padrão se não tem cosntrutor, já tenho um construtor vazio
@@ -29,5 +30,18 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return nome.equals(produto.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome);
     }
 }
