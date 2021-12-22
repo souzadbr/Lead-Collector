@@ -10,7 +10,7 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true, nullable = false)//esse nome será unico, somente um produto com mesmo nome
+    @Column(unique = true, nullable = false)//esse nome será unico e não pode ser nula.
     private String nome;
 
     //Por padrão se não tem cosntrutor, já tenho um construtor vazio
