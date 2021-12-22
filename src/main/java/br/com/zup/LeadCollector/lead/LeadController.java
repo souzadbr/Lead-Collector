@@ -13,12 +13,12 @@ public class LeadController {
     @Autowired
     private LeadService leadService;
 
-    @PutMapping
+    @PutMapping //metodo que grava os dados no banco de dados
     public Lead cadastrarLead (@RequestBody @Valid Lead lead){
         return leadService.salvarLead(lead);
     }
 
-    @GetMapping()
+    @GetMapping() //metodo que le dados no banco de dados
     public List<Lead>buscarProdutos(@RequestParam String nomeDoProduto){
         return leadService.buscasTodosPeloNomeProduto(nomeDoProduto);
     }
