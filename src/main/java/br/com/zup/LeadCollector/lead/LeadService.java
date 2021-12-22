@@ -38,5 +38,9 @@ public class LeadService {
         return listaAtualizada;
     }
 
+    public List<Lead>buscasTodosPeloNomeProduto(String nomeProduto){
+        return leadRepository.findAllByProdutoDeInteresseNome(nomeProduto);
+    }
+
 
 }
