@@ -23,7 +23,18 @@ public class LeadService {
 
     public Lead salvarLead(Lead lead) {
         List<Produto>produtos = buscarProdutos(lead.getProdutosDeInteresse());
-
+        //optional é uma caixinha que pode ter ou não um lead dentro ou null.
+        Optional<Lead>leadOptional = leadRepository.findById(lead.getEmail()); //se ele resgatar esse lead
+        if(leadOptional.isPresent()){
+            Lead leadDoBanco = leadOptional.get();--
+                    +
+            for (Produto produto : leadDoBanco.getProdutosDeInteresse()){
+                if(!leadDoBanco.getProdutosDeInteresse().contains(produto)){
+                    leadDoBanco.getProdutosDeInteresse().add(produto);
+                }
+            }
+            return leadRepository.save(leadDoBanco);
+        }
         lead.setProdutosDeInteresse(produtos);
         return leadRepository.save(lead);
     }
