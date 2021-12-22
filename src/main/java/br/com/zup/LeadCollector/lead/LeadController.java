@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/leads")
@@ -15,5 +16,10 @@ public class LeadController {
     @PutMapping
     public Lead cadastrarLead (@RequestBody @Valid Lead lead){
         return leadService.salvarLead(lead);
+    }
+
+    @GetMapping()
+    public List<Lead>buscarProdutos(@RequestParam String nomeDoProduto){
+        return leadService.buscasTodosPeloNomeProduto(nomeDoProduto);
     }
 }
