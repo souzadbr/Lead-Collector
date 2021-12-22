@@ -26,8 +26,7 @@ public class LeadService {
         //optional é uma caixinha que pode ter ou não um lead dentro ou null.
         Optional<Lead>leadOptional = leadRepository.findById(lead.getEmail()); //se ele resgatar esse lead
         if(leadOptional.isPresent()){
-            Lead leadDoBanco = leadOptional.get();--
-                    +
+            Lead leadDoBanco = leadOptional.get();
             for (Produto produto : leadDoBanco.getProdutosDeInteresse()){
                 if(!leadDoBanco.getProdutosDeInteresse().contains(produto)){
                     leadDoBanco.getProdutosDeInteresse().add(produto);
