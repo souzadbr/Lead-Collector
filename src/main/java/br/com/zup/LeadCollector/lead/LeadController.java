@@ -1,9 +1,9 @@
 package br.com.zup.LeadCollector.lead;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/leads")
@@ -12,5 +12,8 @@ public class LeadController {
     @Autowired
     private LeadService leadService;
 
-
+    @PutMapping
+    public Lead cadastrarLead (@RequestBody @Valid Lead lead){
+        return leadService.salvarLead(lead);
+    }
 }

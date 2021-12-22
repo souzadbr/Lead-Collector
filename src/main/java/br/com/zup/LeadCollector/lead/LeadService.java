@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LeadService {
@@ -20,7 +21,10 @@ public class LeadService {
         this.produtoRepository = produtoRepository;
     }
 
-    public Lead salvarLead(Lead lead){
+    public Lead salvarLead(Lead lead) {
+        List<Produto>produtos = buscarProdutos(lead.getProdutosDeInteresse());
+
+        lead.setProdutosDeInteresse(produtos);
         return leadRepository.save(lead);
     }
 
@@ -38,8 +42,8 @@ public class LeadService {
         return listaAtualizada;
     }
 
-    public List<Lead>buscasTodosPeloNomeProduto(String nomeProduto){
-        return leadRepository.findAllByProdutoDeInteresseNome(nomeProduto);
+    public List<Lead>buscasTodosPeloNomeProduto(String nomeDoProduto){
+        return leadRepository.findAllByProdutoDeInteresseNome(nomeDoProduto);
     }
 
 
